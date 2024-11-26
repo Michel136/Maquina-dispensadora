@@ -19,7 +19,7 @@ struct Producto {
     int stock;
 };
 
-// Función para devolver las monedas ingresadas
+// Funciï¿½n para devolver las monedas ingresadas
 void devolverMonedas(int monedasIngresadas[], int totalInsertado) {
     printf("Devolviendo las monedas ingresadas:\n");
     for (int i = 0; i < totalInsertado; i++) {
@@ -27,7 +27,7 @@ void devolverMonedas(int monedasIngresadas[], int totalInsertado) {
     }
 }
 
-// Función para devolver el cambio
+// Funciï¿½n para devolver el cambio
 int devolverCambio(int cambio, struct Moneda monedas[]) {
     printf("Intentando devolver cambio: %d pesos\n", cambio);
     for (int i = 0; i < NUM_DENOMINACIONES; i++) {
@@ -45,7 +45,7 @@ int devolverCambio(int cambio, struct Moneda monedas[]) {
     return 1;
 }
 
-// Función para calcular el total del fondo de cambio
+// Funciï¿½n para calcular el total del fondo de cambio
 int calcularTotalFondo(struct Moneda monedas[]) {
     int totalFondo = 0;
     for (int i = 0; i < NUM_DENOMINACIONES; i++) {
@@ -54,7 +54,7 @@ int calcularTotalFondo(struct Moneda monedas[]) {
     return totalFondo;
 }
 
-// Función para mostrar y manejar el menú de reabastecimiento
+// Funciï¿½n para mostrar y manejar el menï¿½ de reabastecimiento
 void menuReabastecimiento(struct Producto productos[], int totalProductos, struct Moneda monedas[]) {
     int opcion, nuevoStock, nuevaCantidad, i;
     char productoID[4];
@@ -122,7 +122,7 @@ void menuReabastecimiento(struct Producto productos[], int totalProductos, struc
     }
 }
 
-// Función para mostrar advertencias de stock o fondo bajo
+// Funciï¿½n para mostrar advertencias de stock o fondo bajo
 void verificarAdvertencias(struct Producto productos[], int totalProductos, struct Moneda monedas[]) {
     int totalFondo = calcularTotalFondo(monedas);
     int advertencia = 0;
@@ -181,7 +181,7 @@ int main() {
         printf("=== SISTEMA DISPENSADOR DE PRODUCTOS ===\n");
         verificarAdvertencias(productos, 5, monedas);
 
-        // Lógica principal para ingresar monedas y seleccionar productos
+        // Lï¿½gica principal para ingresar monedas y seleccionar productos
         char entrada[10];
         int encontrado = 0;
         printf("Total insertado: %d pesos\n", totalInsertado);
@@ -207,17 +207,17 @@ int main() {
         printf("Ingresa el valor de la moneda, el ID del producto o 'salir': ");
         scanf("%s", entrada);
 
-         // Verificar si el usuario ingresó 'salir'
+         // Verificar si el usuario ingresï¿½ 'salir'
         if (strcmp(entrada, "salir") == 0) {
             printf("Proceso cancelado. Devolviendo monedas...\n");
-            devolverMonedas(monedasIngresadas, totalMonedasIngresadas); // Llamar a la función para devolver las monedas
+            devolverMonedas(monedasIngresadas, totalMonedasIngresadas); // Llamar a la funciï¿½n para devolver las monedas
             totalInsertado = 0; 
             totalMonedasIngresadas = 0; // Reiniciar el contador de monedas
             Sleep(4000);
             continue;
         }
 
-        // Verificar si el usuario ingresó una moneda válida
+        // Verificar si el usuario ingresï¿½ una moneda vï¿½lida
         if (sscanf(entrada, "%d", &moneda) == 1) {
             if (moneda == 1 || moneda == 2 || moneda == 5 || moneda == 10 || moneda == 20) {
                 totalInsertado += moneda; 
@@ -241,7 +241,7 @@ int main() {
                             
                             // Verificar si se puede devolver el cambio antes de reducir el stock
                             if (!devolverCambio(totalInsertado - productos[i].precio, monedas)) {
-                                printf("No hay suficiente cambio disponible para completar la transacción.\n");
+                                printf("No hay suficiente cambio disponible para completar la transacciï¿½n.\n");
                                 printf("Por favor, ingresa la cantidad correcta del producto.\n");
                             
                                 devolverMonedas(monedasIngresadas, totalMonedasIngresadas);
@@ -251,11 +251,11 @@ int main() {
                                 productos[i].stock--; 
                                 printf("Compra exitosa. El nuevo stock de %s es: %d\n", productos[i].id, productos[i].stock);
                                 
-                                // Aquí se suman las monedas ingresadas al fondo solo si se pudo devolver el cambio
+                                // Aquï¿½ se suman las monedas ingresadas al fondo solo si se pudo devolver el cambio
                                 for (int j = 0; j < totalMonedasIngresadas; j++) {
                                     for (int k = 0; k < NUM_DENOMINACIONES; k++) {
                                         if (monedas[k].valor == monedasIngresadas[j]) {
-                                            monedas[k].cantidad++; // Aumentar la cantidad de monedas de esa denominación
+                                            monedas[k].cantidad++; // Aumentar la cantidad de monedas de esa denominaciï¿½n
                                             break;
                                         }
                                     }
@@ -270,14 +270,14 @@ int main() {
                             Sleep(3000);
                         }
                     } else {
-                        printf("Lo siento, el producto %s está agotado.\n", productos[i].id);
+                        printf("Lo siento, el producto %s estï¿½ agotado.\n", productos[i].id);
                         Sleep(2000);
                     }
                     break;
                 }
             }
             if (!encontrado) {
-                printf("Producto no encontrado. Por favor, selecciona un producto válido.\n");
+                printf("Producto no encontrado. Por favor, selecciona un producto vï¿½lido.\n");
                 Sleep(2000);
             }
         }
